@@ -1,0 +1,153 @@
+<?php
+session_start();
+?>
+
+<?php
+require('connect.php');
+
+if (isset($_POST['email']) && isset($_POST['password'])){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+
+ $sql = "select * from user where email='$email' and password='$password'";
+
+$result = $connection->query($sql);
+
+if($result->num_rows > 0){
+	$_SESSION['email'] = $email;;
+	echo "login sucessful dear";
+	header('Location:userAccount.php?email='.$email);
+}
+else{
+	  $message = "Your login failed";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+}
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>The RoaDo Team</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/font/font.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
+</head>
+<style>
+h1 {
+    color: red;font-size: 80px; text-decoration: underline;text-shadow: 3px 2px blue;background: lightpink;
+}
+h5 {
+    color:blue;text-align: center;font: italic bold 80px/70px Georgia, serif ;text-decoration: underline;
+}
+h4 {
+    font-size: 20px; 
+}
+h2 {
+    font-size: 30px; color: blue;
+}
+/* unvisited link */
+a:link {
+    color: green;
+}
+
+/* visited link */
+a:visited {
+    color: green;
+}
+
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: pink;
+}
+</style>
+<body>
+<div class="body_wrapper">
+  <div class="center">
+    <div class="header_area">
+     <li><img src="images/logo1.jpg" alt=""/><br><br><br>
+     <a href="roado.co.in"><span> <p>Go to Official website</p> </span></a></li>
+  </div>
+
+    
+    <form method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h2>Log In</h2>
+    <p>Please enter your registered email.</p>
+    <hr>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn" onclick="window.location.reload()">Cancel</button>
+      <button type="submit" class="signupbtn">Log In</button>
+    </div>
+        <a href="regis.php"><span> <p>Register Here</p> </span></a>
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+    
+      <div class="copyright_text">
+        <p> The RoaDo Team.Design by <a href="https://hutesh.github.io/"><span>Hutesh Kumar Gauttam</span></a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="assets/js/jquery-min.js"></script> 
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="assets/js/jquery.bxslider.js"></script> 
+<script type="text/javascript" src="assets/js/selectnav.min.js"></script> 
+<script type="text/javascript">
+selectnav('nav', {
+    label: '-Navigation-',
+    nested: true,
+    indent: '-'
+});
+selectnav('f_menu', {
+    label: '-Navigation-',
+    nested: true,
+    indent: '-'
+});
+$('.bxslider').bxSlider({
+    mode: 'fade',
+    captions: true
+});
+</script>
+</body>
+</html>
